@@ -18,7 +18,7 @@ choice = st.sidebar.selectbox("Choose a page", pages)
 
 
 # global functions?
-@st.cache
+@st.cache_data
 def load_data():
     df = pd.read_csv("covid_19_data.csv")
     return df
@@ -37,8 +37,8 @@ def get_raw():
     st.header("A slight look of the data")
     st.write("  ")
     st.write(df.head(x))
-    col1, col2 = st.beta_columns(2)
     st.markdown("<hr>", unsafe_allow_html=True)
+    col1, col2 = st.columns(2)
     col1.subheader("Number of Rows:")
     col1.write(df.shape[0])
     col2.subheader("Number of Columns:")
@@ -52,7 +52,7 @@ def get_raw():
     st.header("Columns description")
     for i in df.columns:
         st.subheader(i)
-        col1, col2 = st.beta_columns(2)
+        col1, col2 = st.columns(2)
         col1.caption("Unique Values")
         col1.write(len(df[i].unique()))
         col2.caption("Type of Data")
